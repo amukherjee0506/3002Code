@@ -1,0 +1,27 @@
+<launch>
+	
+	<arg name="sim" default="true"/>
+
+	
+	<node name="rviz" pkg="rviz" type="rviz"
+		args="-d $(find rbe3002_lab3)/src/rviz/rbe3002_lab3.rviz"/>
+
+	<node name="map_server" pkg="map_server" type="map_server"
+		args="$(find rbe3002_lab3)/src/maps/simple_map.yaml"/>
+	
+
+	<node name="teehee" pkg="tf" type="static_transform_publisher"
+		args="0 0 0 0 0 0 /map /odom 100"/>
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+	<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">
+		</include>
+
+	
+	<node pkg="rbe3002_lab3" name="lab3" type="path_planner.py" output="screen"/>
+
+	<node pkg="rbe3002_lab3" name="imports" type="lab21.py" output="screen"/>
+
+ 
+</launch>

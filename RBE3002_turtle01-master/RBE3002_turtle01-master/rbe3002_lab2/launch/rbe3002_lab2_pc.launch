@@ -1,0 +1,19 @@
+<launch>
+	
+	<arg name="sim" default="true"/>
+
+	
+	<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_gazebo_rviz.launch">
+	</include>
+
+
+
+	<group if="$(eval arg('sim') =='true')">
+		<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">
+		</include>
+	</group>
+	
+	<node pkg="rbe3002_lab2" name="lab2" type="lab2.py" output="screen"/>
+
+ 
+</launch>

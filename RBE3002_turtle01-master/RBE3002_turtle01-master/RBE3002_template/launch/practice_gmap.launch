@@ -1,0 +1,14 @@
+<launch>
+
+<include file="$(find RBE3002_template)/launch/practice_maze.launch">
+		</include>
+
+
+<include file="$(find turtlebot3_slam)/launch/turtlebot3_gmapping.launch">
+		</include>
+
+<node name="rviz" pkg="rviz" type="rviz"
+		args="-d $(find rbe3002_lab3)/src/rviz/rbe3002_lab3.rviz"/>
+
+
+</launch>

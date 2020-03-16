@@ -1,0 +1,28 @@
+<launch>
+	
+	<arg name="sim" default="true"/>
+
+	
+	<node name="rviz" pkg="rviz" type="rviz"
+		args="-d $(find RBE3002_template)/src/rviz/gmapper.rviz"/>
+
+
+	
+
+	<node name="teehee" pkg="tf" type="static_transform_publisher"
+		args="0 0 0 0 0 0 /map /odom 100"/>
+
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+	
+	<include file="$(find RBE3002_template)/launch/maze_sim.launch">
+		</include>
+
+	
+	<node pkg="rbe3002_lab3" name="lab3" type="path_planner.py" output="screen"/>
+
+	<node pkg="rbe3002_lab3" name="imports" type="lab21.py" output="screen"/>
+
+ 
+</launch>
